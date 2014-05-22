@@ -1,0 +1,44 @@
+
+<html>
+<head>
+    <title>CMP.LY</title>
+    <script type="text/javascript">
+        if(window.opener._popup_closed){
+            var sample_response_object = {
+                "account" : {
+                    "_id" : "10203257111101410",
+                    "_platform" : "facebook",
+                    "advertiser_id" : "53026a672114c4aa44000001",
+                    "profile" : {
+                        "age_range" : {
+                            "max" : 9999,
+                            "min" : 21
+                        },
+                        "email" : "michael@delorenzodesign.com",
+                        "first_name" : "Michael",
+                        "image_url" : "http://graph.facebook.com/10203257111101410/picture?type=square",
+                        "last_name" : "De Lorenzo",
+                        "name" : "Michael De Lorenzo",
+                        "third_party_id" : "10203257111101410"
+                    },
+                    "promotion_id" : "53722e9c2114c41f9a000007",
+                    "timestamp" : 1400794109
+                },
+                "provider" : "facebook"
+            };
+            window.onbeforeunload = window.opener._popup_closed(null, sample_response_object);
+        }
+        //  comment out the following line for the window to remain open
+        window.close();
+    </script>
+</head>
+
+<body>
+
+<p>
+    If this window doesn't close automatically, <a href="javascript:window.close();">click here to close it</a>.
+</p>
+
+
+</body>
+</html>

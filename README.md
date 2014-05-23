@@ -7,7 +7,7 @@ Only web server is needed to "run" this sample.  Add the two HTML files to your 
 social credentials are shared when using this example.
 
 ## Usage
-You can utilize the _Mock Response_ option without an active [CommandPost|http://getcommandpost.com] account or an active
+You can utilize the _Mock Response_ option without an active [CommandPost](http://getcommandpost.com) account or an active
 promotion (created using your CommandPost account).
 
 ## Issues

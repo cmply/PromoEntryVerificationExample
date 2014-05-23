@@ -1,0 +1,200 @@
+<html>
+<title>Promotion Entry Verification | Powered by CommandPost [getcommandpost.com]</title>
+<head>
+    <link href='https://app.cmp.ly/favicon.ico' rel='shortcut icon' type='image/x-icon'>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js" type="text/javascript"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <style type="text/css">
+        body{
+            padding-top:50px;
+            padding-bottom:50px;
+        }
+    </style>
+    <script type="text/javascript">
+        window._popup_closed = function(err,options){
+            if(err === null){
+                $("#response-header").text('Successful Response');
+                $('#mock-output').text(JSON.stringify(options));
+                $('#response-container').addClass('alert alert-info');
+            }else{
+                $("#response-header").text('Error Encountered');
+                $('#mock-output').text(JSON.stringify(err));
+                $('#response-container').addClass('alert alert-error');
+            }
+
+            window._popup_closed = null;
+        };
+
+        function _buildUrlAndOpen(){
+            var url_parts = [
+                    'https://verify.comamndpo.st',
+                    'promo',
+                    $('#agency_id').val(),
+                    $('#advertiser_id').val(),
+                    $('#promotion_id').val(),
+                    'verify',
+                    $('#platform').val()
+            ];
+            _open(url_parts.join('/'));
+        }
+
+        function _open(connect_path){
+            var height  = 768;
+            var width   = 1024;
+            var left    = (document.width*0.5)-512;
+            var top     = (document.height*0.5)-384;
+
+            var new_window_specs =  "fullscreen=no,height="+height+",location=no,titlebar=no,menubar=no,resizable=no,scrollbars=yes,status=no,width="+width+",left="+left+",top="+top+";";
+
+            if(!connect_path){
+                connect_path = 'mock-response.html';
+            }
+            auth_window = window.open(connect_path,null,new_window_specs,false);
+        }
+
+        //  uncomment this line to have the pop-up open when the document loads
+        //_open();
+    </script>
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="http://getcommandpost.com">
+                    <img src="https://d268e6k9fk1sma.cloudfront.net/assets/logos/command-post/logo-150x15-white-13d194b987bbb9c536df0a8904223501.png" alt="CommandPost" />
+                </a>
+            </div>
+            <div class="pull-right navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="https://github.com/cmply/PromoEntryVerificationExample">Github Repository</a></li>
+                    <li><a href="http://getcommandpost.com/">Contact</a></li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <h2>Opener Client-Side Code</h2>
+                <pre>
+window._popup_closed = function(err,options){
+  if(err === null){
+        document.getElementsByTagName('h1')[0].innerHTML = "RESPONSE";
+        document.getElementById('mock-output').innerHTML = JSON.stringify(options);
+    }else{
+        document.getElementsByTagName('h1')[0].innerHTML = "ERROR!";
+        document.getElementById('mock-output').innerHTML = JSON.stringify(err);
+    }
+  window._popup_closed = null;
+};
+
+function _open(){
+  var height  = 768;
+  var width   = 1024;
+  var left    = (document.width*0.5)-512;
+  var top     = (document.height*0.5)-384;
+
+  var new_window_specs =  "fullscreen=no,height="+height+",location=no,titlebar=no,menubar=no,resizable=no,";
+  new_window_specs     += "scrollbars=yes,status=no,width="+width+",left="+left+",top="+top+";";
+
+  var connect_path = 'mock-response.html';
+  auth_window = window.open(connect_path,null,new_window_specs,false);
+}
+
+//  uncomment this line to have the pop-up open when the document loads
+//_open();
+</pre>
+
+                <h2>Sample Expected Response</h2>
+<pre>
+{
+    "account" : {
+        "_id" : "10203257111101410",
+        "_platform" : "facebook",
+        "advertiser_id" : "53026a672114c4aa44000001",
+        "profile" : {
+            "age_range" : {
+                "max" : 9999,
+                "min" : 21
+            },
+            "email" : "michael@delorenzodesign.com",
+            "first_name" : "Michael",
+            "image_url" : "http://graph.facebook.com/10203257111101410/picture?type=square",
+            "last_name" : "De Lorenzo",
+            "name" : "Michael De Lorenzo",
+            "third_party_id" : "10203257111101410"
+        },
+        "promotion_id" : "53722e9c2114c41f9a000007",
+        "timestamp" : 1400794109
+    },
+    "provider" : "facebook"
+}
+</pre>
+            </div>
+            <div class="col-lg-4">
+                <h2>&nbsp;</h2>
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#mock" data-toggle="tab">Mock</a></li>
+                    <li><a href="#builder" data-toggle="tab">Builder</a></li>
+                </ul>
+
+                <div class="tab-content">
+                    <div class="tab-pane active" id="mock">
+                        <div class="well well-sm">
+
+                            <p>Click the button below to open a mock response. A window will open, as if an OAuth verification completed successfully.</p>
+                            <p>
+                                <button class="btn btn-block btn-info" onclick='javascript:_open();'>Trigger Facebook Mock Response</button>
+                            </p>
+                        </div>
+
+                    </div>
+                    <div class="tab-pane" id="builder">
+                        <div class="well well-sm">
+                            <p><span class="label label-info">Tip</span> The following values must be collected from your live account.
+                                You can also retrieve this URL from your account.
+                            </p>
+                            <form class="form form-vertical">
+                                <div class="form-group">
+                                    <label for="agency_id" class="control-label">Agency Id</label>
+                                    <input type="text" id="agency_id" class="form-control" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="advertiser_id" class="control-label">Advertiser Id</label>
+                                    <input type="text" id="advertiser_id" class="form-control" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="promotion_id" class="control-label">Promotion Id</label>
+                                    <input type="text" id="promotion_id" class="form-control" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="platform" class="control-label">Select Platform</label>
+                                    <select id="platform" class="form-control">
+                                        <option value="facebook">Facebook</option>
+                                        <option value="instagram">Instagram</option>
+                                        <option value="twitter">Twitter</option>
+                                    </select>
+                                </div>
+                                <button class="btn btn-large btn-info btn-block" onclick='javascript:_buildUrlAndOpen();'>Trigger Live Response</button>
+                            </form>
+                        </div>
+
+
+
+                    </div>
+                </div>
+
+
+
+                <h2 id="response-header">Response</h2>
+                <div class="" id="response-container">
+                    <pre id='mock-output'>[Trigger the response]</pre>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
